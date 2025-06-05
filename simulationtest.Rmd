@@ -1,0 +1,23 @@
+---
+title: "simmulation"
+output: html_document
+date: "2023-08-15"
+---
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Installation
+```{r installation, results = "hide", eval = FALSE}
+setRepositories(ind = 1:2)
+devtools::install_github("samuelbfernandes/simplePHENOTYPES", build_vignettes = TRUE)
+```

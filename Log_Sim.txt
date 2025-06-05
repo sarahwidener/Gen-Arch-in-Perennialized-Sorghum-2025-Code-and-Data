@@ -1,0 +1,27 @@
+Simulation of a Single Trait Genetic Architecture with Additive Effects
+
+SIMULATION PARAMETERS: 
+
+
+Master Seed: 342451 
+
+Number of traits: 1
+Number of additive QTNs: 3
+Replicating set of QTNs at each simulation (vary_QTN):  FALSE
+Additive genetic effect:
+$Trait_1
+[1] 0.90 0.20 0.04
+
+
+Output file format: 'long'
+
+
+DIAGNOSTICS:
+
+
+Population Heritability: 0.7
+Sample heritability (Average of 10  replications): 
+[1] 0.7142945
+
+
+Results are saved at: /Users/alipka/Library/CloudStorage/Box-Box/Widener_Lipka_Shared_Folder/TLI/Genomic_Selection/Initial_Test_Pipeline/H4/Simulation
