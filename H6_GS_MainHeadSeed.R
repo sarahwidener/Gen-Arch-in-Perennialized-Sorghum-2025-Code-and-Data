@@ -1,0 +1,64 @@
+setwd("/Users/sarahjw2/Box/Widener_Lipka_Shared_Folder/TLI/Genomic_Selection/Initial_Test_Pipeline/H6/H6data")
+home.dir <- getwd()
+
+#Read in some prerequisite libraries
+#install.packages("rrBLUP")
+library(rrBLUP)
+library('MASS')
+library(multtest)
+library(gplots)
+
+
+
+#Use the "load" function to read in the SNPs. The SNPs are in a data set called "myG"
+
+setwd("/Users/sarahjw2/Box/Widener_Lipka_Shared_Folder/TLI/Genomic_Selection/Initial_Test_Pipeline/Scripts_to_Read_In")
+source("k.fold.CV.Function.to.Read.In.v.1.5.R")
+source("GAPIT_Code_from_Internet_20120411_Allelic_Effect.R")
+setwd(home.dir)
+
+#Take a look at the genoytpic and phenotypic data
+myG <- read.delim("Genotype.H6.rf.filter.in.Hapmap.Format.txt", head = FALSE)
+View(myG)
+
+myY <- read.csv("H6_all_pheno.csv", head = TRUE)
+View(myY)
+
+#Set a seed number - this will ensure that the same folds are being used.
+this.seed.number <- sample(-1000000:1000000,1)
+
+#this.seed.number <- -673994
+#End temporary code
+
+myY.for.GS <- myY[,c(1,9)]
+View(myY.for.GS)
+
+#####Run 5-fold CV on the genome-wide marker set
+dir.create(paste("1Results_MainHeadSeed",colnames(myY.for.GS)[2],sep = ""))
+rrblup.kfoldfoldCV(Y = myY.for.GS, Geno = myG, traitname = colnames(myY.for.GS)[2], path.for.results = paste("1Results_MainHeadSeed",colnames(myY.for.GS)[2],"/",sep = ""), number.of.folds = 5, seed.number = this.seed.number)
+
+
+
+
+setwd("/Users/sarahjw2/Box/Widener_Lipka_Shared_Folder/TLI/Genomic_Selection/Initial_Test_Pipeline/H6/H6GS")
+home.dir <- getwd()
+##############
+myY.for.GS <- myY[,c(1,10)]
+View(myY.for.GS)
+
+#####Run 5-fold CV on the genome-wide marker set
+dir.create(paste("SalResults_MainHeadSeed",colnames(myY.for.GS)[2],sep = ""))
+rrblup.kfoldfoldCV(Y = myY.for.GS, Geno = myG, traitname = colnames(myY.for.GS)[2], path.for.results = paste("SalResults_MainHeadSeed",colnames(myY.for.GS)[2],"/",sep = ""), number.of.folds = 5, seed.number = this.seed.number)
+
+
+
+##############
+myY.for.GS <- myY[,c(1,11)]
+View(myY.for.GS)
+
+#####Run 5-fold CV on the genome-wide marker set
+dir.create(paste("AthResults_MainHeadSeed",colnames(myY.for.GS)[2],sep = ""))
+rrblup.kfoldfoldCV(Y = myY.for.GS, Geno = myG, traitname = colnames(myY.for.GS)[2], path.for.results = paste("AthResults_MainHeadSeed",colnames(myY.for.GS)[2],"/",sep = ""), number.of.folds = 5, seed.number = this.seed.number)
+
+
+
